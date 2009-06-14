@@ -8,13 +8,20 @@
  */
  
 #include "Matrix4f.h"
+#include "Matrix.cpp"
  
 #include <iostream>
 using namespace std;
  
+
 Matrix4f::Matrix4f()
 {
-  loadIdentityMatrix();
+	for(int x = 0; x < 4; x++)
+		for(int y = 0; y < 4; y++)
+			if(x == y)
+				fields[x][y] = 1;
+			else 
+				fields[x][y] = 0;
 }
  
  
@@ -39,95 +46,6 @@ Matrix4f::Matrix4f(float a1, float a2, float a3, float a4, float b1, float b2, f
   fields[2][3] = d3;
   fields[3][3] = d4;
 }
- 
- 
-void Matrix4f::loadIdentityMatrix(void)
-{ 
-  for(int x = 0; x < 4; x++)
-    for(int y = 0; y < 4; y++)
-      if(x == y)
-        fields[x][y] = 1;
-      else 
-        fields[x][y] = 0;
-  
-}
- 
- 
- 
-Matrix4f Matrix4f::calculateInverse(void)
-{
-  Matrix4f thisMatrix = *this;
-  Matrix4f inverseMatrix;
-  inverseMatrix.loadIdentityMatrix();
-  float e = 0.0001f;
-  
-  for(int y = 1; y < 4; y++)
-  {
-    //im Dreieck laufen 
-    for(int x = 0; x < y; x++)
-    {
-      
-        float factor = thisMatrix.getValue(x, y) / thisMatrix.getValue(x, x);
- 
-        //Zeile durchlaufen und werte ausrechnen
-        for(int lineX = 0; lineX < 4; lineX++)
-        {
-          thisMatrix.setValue(lineX, y, thisMatrix.getValue(lineX, y) 
-                  - (thisMatrix.getValue(lineX,x) * factor));
-        
-          inverseMatrix.setValue(lineX, y, inverseMatrix.getValue(lineX, y)
-                     - (inverseMatrix.getValue(lineX, x) * factor));
-                         
-        }//end for line
-    }//end forX
-  }//end forY
-  
-  //jetzt von unten nach oben
-  for(int y = 3; y > -1; y--)
-  {
-    //im Dreieck laufen 
-    for(int x = 3; x > y; x--)
-    {
-      float factor = thisMatrix.getValue(x, y) / thisMatrix.getValue(x, x);
-        
-        //Zeile durchlaufen und werte ausrechnen
-        for(int lineX = 0; lineX < 4; lineX++)
-        {
-          thisMatrix.setValue(lineX, y, thisMatrix.getValue(lineX, y) 
-                    - (thisMatrix.getValue(lineX,x) * factor));
-          
-          inverseMatrix.setValue(lineX, y, inverseMatrix.getValue(lineX, y)
-                       - (inverseMatrix.getValue(lineX, x) * factor));
-          
-        }//end for line
-    }//end forX
-  }//end forY
-  
-  
-  //Jetzt noch jede zeile durchlaufen und auf 1 normalisieren
-  
-  for(int x = 0; x < 4; x++)
-  {
-    for(int y = 0; y < 4; y++)
-    {
-      if(x == y)
-      {
-        float factor = thisMatrix.getValue(x, y);
-        
-        if(factor != 0)
-          for(int lineX = 0; lineX < 4; lineX++)
-            inverseMatrix.setValue(lineX, y, inverseMatrix.getValue(lineX, y) / factor);
-      }
-    }
-    
-  }
-      
-  
-  return inverseMatrix;  
-  
-  
-}//end method
- 
  
  
  

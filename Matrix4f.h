@@ -36,11 +36,10 @@ public:
 	Matrix4f operator * (float scalarB);
 	Vec4f operator * (Vec4f vectorB);
 	
-	
+	    
 	Matrix4f transpose(void);
-	void loadIdentityMatrix(void);
-	Matrix4f calculateInverse(void);
 	
+		
 	void print(void);
 	
 	
@@ -50,7 +49,5 @@ private:
 	
 	
 };
-
-
 
 #endif

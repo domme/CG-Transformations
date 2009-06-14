@@ -10,11 +10,12 @@
  */
  
 #include "Transformation.h"
+#include "Matrix.cpp"
  
  
 Transformation::Transformation()
 {
-  this->transformationMatrix.loadIdentityMatrix();
+	this->transformationMatrix = Matrix::identity();
   this->inverseMatrix = transformationMatrix;
 }
  
@@ -32,7 +33,7 @@ Vec4f Transformation::transformPoint(Vec4f point)
 void Transformation::translate(float tx, float ty, float tz)
 {
   Matrix4f translationMatrix;
-  translationMatrix.loadIdentityMatrix();
+  this->transformationMatrix = Matrix::identity();
   translationMatrix.setValue(3, 0, tx);
   translationMatrix.setValue(3, 1, ty);
   translationMatrix.setValue(3, 2, tz);
@@ -55,7 +56,7 @@ Vec4f Transformation::rotZ(Vec4f point, float theta)
   Vec4f rotatedPoint;
  
   Matrix4f rotationMatrix;
-  rotationMatrix.loadIdentityMatrix();
+	rotationMatrix = Matrix::identity();
   
   rotationMatrix.setValue(0, 0, (float)cos(theta));
   rotationMatrix.setValue(1, 0, (float)-sin(theta));
@@ -73,7 +74,7 @@ Vec4f Transformation::rotY(Vec4f point, float theta)
   Vec4f rotatedPoint;
   
   Matrix4f rotationMatrix;
-  rotationMatrix.loadIdentityMatrix();
+  rotationMatrix = Matrix::identity();
   
   rotationMatrix.setValue(0, 0, (float)cos(theta));
   rotationMatrix.setValue(2, 0, (float)sin(theta));
@@ -92,7 +93,7 @@ Vec4f Transformation::rotX(Vec4f point, float theta)
   Vec4f rotatedPoint;
   
   Matrix4f rotationMatrix;
-  rotationMatrix.loadIdentityMatrix();
+  rotationMatrix = Matrix::identity();
   
   rotationMatrix.setValue(1, 1, (float)cos(theta));
   rotationMatrix.setValue(2, 1, (float)-sin(theta));
@@ -110,7 +111,7 @@ Vec4f Transformation::rotX(Vec4f point, float theta)
 void Transformation::scale(float sx, float sy, float sz)
 {
   Matrix4f scaleMatrix;
-  scaleMatrix.loadIdentityMatrix();
+	scaleMatrix = Matrix::identity();
   
   scaleMatrix.setValue(0, 0, sx);
   scaleMatrix.setValue(1, 1, sy);
