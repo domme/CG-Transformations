@@ -30,7 +30,7 @@ Vec4f::Vec4f(float _x, float _y, float _z)
 
 
 
-Vec4f Vec4f::operator +(Vec4f vectorB)
+Vec4f Vec4f::operator +(const Vec4f& vectorB)
 {
 	Vec4f returnVector;
 	
@@ -43,7 +43,7 @@ Vec4f Vec4f::operator +(Vec4f vectorB)
 }
 
 
-Vec4f Vec4f::operator -(Vec4f vectorB)
+Vec4f Vec4f::operator -(const Vec4f& vectorB)
 {
 	Vec4f returnVector;
 	
@@ -57,7 +57,7 @@ Vec4f Vec4f::operator -(Vec4f vectorB)
 
 
 
-Vec4f Vec4f::operator *(Vec4f vectorB)
+Vec4f Vec4f::operator *(const Vec4f& vectorB)
 {
 	Vec4f returnVector;
 	
@@ -81,21 +81,21 @@ Vec4f Vec4f::operator * (float scalarB)
 }
 
 
-Vec4f Vec4f::operator+=(Vec4f vectorB)
+Vec4f Vec4f::operator+=(const Vec4f& vectorB)
 {
 	*this = *this + vectorB;
 	return *this;
 }
 
 
-Vec4f Vec4f::operator-=(Vec4f vectorB)
+Vec4f Vec4f::operator-=(const Vec4f& vectorB)
 {
 	*this = *this - vectorB;
 	return *this;
 }
 
 
-Vec4f Vec4f::operator *=(Vec4f vectorB)
+Vec4f Vec4f::operator *=(const Vec4f& vectorB)
 {
 	*this = *this * vectorB;
 	return *this;
@@ -131,7 +131,7 @@ void Vec4f::setValues(float _x, float _y, float _z)
 }
 
 
-float Vec4f::getValue(int _index)
+float Vec4f::getValue(int _index) const
 {
 	if(_index < 4 && _index >= 0)
 		return fields[_index];
@@ -140,7 +140,7 @@ float Vec4f::getValue(int _index)
 		
 }
 
-Vec4f Vec4f::crossProduct(Vec4f vectorB)
+Vec4f Vec4f::crossProduct(const Vec4f& vectorB)
 {
 	Vec4f returnVector;
 	

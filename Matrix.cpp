@@ -54,13 +54,13 @@ static Matrix4f calculateInverse(Matrix4f matrixB)
 		
 	for(int y = 1; y < 4; y++)
 	{
-		//im Dreieck laufen 
+		//iterate the upper left triangle 
 		for(int x = 0; x < y; x++)
 		{
 			
 			float factor = thisMatrix.getValue(x, y) / thisMatrix.getValue(x, x);
 			
-			//Zeile durchlaufen und werte ausrechnen
+			//iterate the line and calculate
 			for(int lineX = 0; lineX < 4; lineX++)
 			{
 				thisMatrix.setValue(lineX, y, thisMatrix.getValue(lineX, y) 
@@ -73,7 +73,7 @@ static Matrix4f calculateInverse(Matrix4f matrixB)
 		}//end forX
 	}//end forY
 	
-	//jetzt von unten nach oben
+	//no
 	for(int y = 3; y > -1; y--)
 	{
 		//im Dreieck laufen 

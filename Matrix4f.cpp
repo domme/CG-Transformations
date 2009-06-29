@@ -49,7 +49,7 @@ Matrix4f::Matrix4f(float a1, float a2, float a3, float a4, float b1, float b2, f
  
  
  
-Matrix4f Matrix4f::operator + (Matrix4f matrixB)
+Matrix4f Matrix4f::operator + (const Matrix4f& matrixB)
 {
   Matrix4f returnMatrix;
   
@@ -62,7 +62,7 @@ Matrix4f Matrix4f::operator + (Matrix4f matrixB)
  
  
  
-Matrix4f Matrix4f::operator - (Matrix4f matrixB)
+Matrix4f Matrix4f::operator - (const Matrix4f& matrixB)
 {
   Matrix4f returnMatrix;
   
@@ -75,14 +75,14 @@ Matrix4f Matrix4f::operator - (Matrix4f matrixB)
  
  
  
-Matrix4f Matrix4f::operator += (Matrix4f matrixB)
+Matrix4f Matrix4f::operator += (const Matrix4f& matrixB)
 {
   *this = *this + matrixB;
   
   return *this;
 }
  
-Matrix4f Matrix4f::operator -= (Matrix4f matrixB)
+Matrix4f Matrix4f::operator -= (const Matrix4f& matrixB)
 {
   *this = *this - matrixB;
   
@@ -90,7 +90,7 @@ Matrix4f Matrix4f::operator -= (Matrix4f matrixB)
 }
  
  
-Vec4f Matrix4f::operator *(Vec4f vectorB)
+Vec4f Matrix4f::operator *(const Vec4f& vectorB)
 {
   Vec4f returnVector;
   float newValue = 0;
@@ -125,7 +125,7 @@ Matrix4f Matrix4f::operator * (float scalarB)
  
  
  
-Matrix4f Matrix4f::operator *= (Matrix4f matrixB)
+Matrix4f Matrix4f::operator *= (const Matrix4f& matrixB)
 {
   *this = (*this * matrixB);
   
@@ -133,7 +133,7 @@ Matrix4f Matrix4f::operator *= (Matrix4f matrixB)
 }
  
  
-Matrix4f Matrix4f::operator *(Matrix4f matrixB)
+Matrix4f Matrix4f::operator *(const Matrix4f& matrixB)
 {
   Matrix4f returnMatrix;
   float newValue = 0;
@@ -159,7 +159,7 @@ Matrix4f Matrix4f::operator *(Matrix4f matrixB)
 }//end method
  
  
-float Matrix4f::getValue(int column, int row)
+float Matrix4f::getValue(int column, int row) const
 {
   if(column < 4 && column >= 0 && row < 4 && row >= 0)
     return this->fields[column][row];

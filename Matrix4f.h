@@ -24,17 +24,17 @@ public:
 		
 	
 	void setValue(int column, int row, float value);
-	float getValue(int column, int row);
+	float getValue(int column, int row) const;
 	
 
-	Matrix4f operator + (Matrix4f matrixB);
-	Matrix4f operator - (Matrix4f matrixB);
-	Matrix4f operator * (Matrix4f matrixB);
-	Matrix4f operator += (Matrix4f matrixB);
-	Matrix4f operator -= (Matrix4f matrixB);
-	Matrix4f operator *= (Matrix4f matrixB);
+	Matrix4f operator + (const Matrix4f& matrixB);
+	Matrix4f operator - (const Matrix4f& matrixB);
+	Matrix4f operator * (const Matrix4f& matrixB);
+	Matrix4f operator += (const Matrix4f& matrixB);
+	Matrix4f operator -= (const Matrix4f& matrixB);
+	Matrix4f operator *= (const Matrix4f& matrixB);
 	Matrix4f operator * (float scalarB);
-	Vec4f operator * (Vec4f vectorB);
+	Vec4f operator * (const Vec4f& vectorB);
 	
 	    
 	Matrix4f transpose(void);

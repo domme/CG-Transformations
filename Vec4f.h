@@ -16,21 +16,21 @@ public:
 	Vec4f();
 	Vec4f(float _x, float _y, float _z);
 	
-	Vec4f operator + (Vec4f vectorB);
-	Vec4f operator - (Vec4f vectorB);
-	Vec4f operator += (Vec4f vectorB);
-	Vec4f operator -= (Vec4f vectorB);
-	Vec4f operator * (Vec4f vectorB);
+	Vec4f operator + (const Vec4f& vectorB);
+	Vec4f operator - (const Vec4f& vectorB);
+	Vec4f operator += (const Vec4f& vectorB);
+	Vec4f operator -= (const Vec4f& vectorB);
+	Vec4f operator * (const Vec4f& vectorB);
 	Vec4f operator * (float scalarB);
-	Vec4f operator *=(Vec4f vectorB);
+	Vec4f operator *=(const Vec4f& vectorB);
 	Vec4f operator *=(float scalarB);
 	
 //	Vec4f dotProduct(Vec4f vectorB);
 //	Vec4f dotProduct(float scalarB);
 	
-	Vec4f crossProduct(Vec4f vectorB);
+	Vec4f crossProduct(const Vec4f& vectorB);
 	
-	float getValue(int _index);
+	float getValue(int _index) const;
 	
 	void setValue(int _index, float _value);
 	
